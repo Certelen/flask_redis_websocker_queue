@@ -13,5 +13,4 @@ def index():
 @socketio.on('test event')
 def test_connect():
     user_task_1(2)
-    emit('after connect', {
-        'data': 'Задача поставлена в очередь'})
+    emit('after connect', 'Задача поставлена в очередь')
