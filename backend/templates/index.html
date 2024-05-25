@@ -20,7 +20,7 @@
             });
             socket.on('after connect', data => {
                 // wait a connect request from server-view 'after connect'.
-                $('#log').append('<br>' + $('<div/>').text('What is the intention of the code: ' + data).html());
+                $('#log').append('<br>' + $('<div/>').text(data).html());
             })
 
         });
