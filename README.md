@@ -26,10 +26,6 @@
 ```
 ~ pip install -r requirements.txt
 ```
-Переходим в папку
-```
-~ cd backend
-```
 # Запуск
 В первом терминале запускаем Flask-сервер
 ```
