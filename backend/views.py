@@ -12,5 +12,6 @@ def index():
 
 @socketio.on('test event')
 def test_connect():
-    user_task_1(2)
-    emit('after connect', 'Задача поставлена в очередь')
+    message = user_task_1(2)
+    emit('after connect', {'message': 'Задача в очереди'})
+    emit('after connect', {'message': message(blocking=True)})

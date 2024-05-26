@@ -49,6 +49,7 @@ def periodic_task_6():
 
 @huey.task(priority=10)
 def user_task_1(n):
-    print('Начата пользовательская задача 1')
+    print('Закончена пользовательская задача 1')
     time.sleep(5)
     print('Закончена пользовательская задача 1')
+    return 'Задача выполнена'
