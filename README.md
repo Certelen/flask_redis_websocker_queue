@@ -5,7 +5,7 @@
 - Python 3.11
 - Redis 5.0.4
 - Flask 3.0.3
-- Flask-SocketIO 5.3.6
+- Flask Sock 0.7.0
 - Huey 2.5.0
 
 # Установка

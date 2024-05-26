@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_socketio import SocketIO
+from flask_sock import Sock
 from huey import PriorityRedisHuey
 
 
@@ -8,6 +8,6 @@ SECRET_KEY = 'shhh, secret'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+sock = Sock(app)
 
 huey = PriorityRedisHuey()

@@ -1,6 +1,6 @@
 import tasks
 import views
-from app import app, huey, socketio
+from app import app, huey
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    app.run(debug=True)

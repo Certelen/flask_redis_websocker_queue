@@ -6,24 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var socket = io.connect();
-
+    <script>
+        console.log(window.location.host.slice(1))
+        const socket = new WebSocket('ws://' + window.location.host + '/test_route');
+        socket.onopen = function (event) {
+            console.log('WebSocket is connected.');
             $(document).on("click", "#send_action", function () {
-                socket.emit('test event', function (connectMsg) {
-                    // sending a connect request to the server-view 'test event'.
-                    console.log('Подключение установлено')
-
-                });
+                socket.send('Задача 1');
             });
-            socket.on('after connect', data => {
-                // wait a connect request from server-view 'after connect'.
-                $('#log').append('<br>' + $('<div/>').text(data.message).html());
-            })
-
-        });
+            socket.onmessage = function (event) {
+                $('#log').append('<br>' + $('<div/>').text(event.data).html());
+            };
+        };
     </script>
 </head>
 
