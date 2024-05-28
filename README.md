@@ -17,27 +17,6 @@
 ```
 
 ## Развертывание на текущем устройстве:
-# Подготовка
-Перемещаем файлы настроек (gunicorn.service, huey.service) в папку /etc/systemd/system/
-Запускаем службы:
-```
-systemctl enable gunicorn
-systemctl start gunicorn
-systemctl enable huey
-systemctl start huey
-```
-Перемещаем файл настроек 000-default.conf в папку /etc/apache2/sites-enabled/
-Активация домена, перенаправления веб-сокетов:
-```
-a2enmod proxy_http
-a2ensite 000-default.conf
-```
-Запуск, перезапуск сервера:
-```
-systemctl start apache2
-systemctl restart apache2
-```
-
 Устанавливаем и активируем виртуальное окружение из папки с проектом
 ```
 ~ py -3.11 -m venv venv

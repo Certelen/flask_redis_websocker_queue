@@ -45,7 +45,7 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function (e) {
-            const socket = new WebSocket('ws://' + window.location.host + ':5001/update_route');
+            const socket = new WebSocket('ws://' + window.location.host + '/update_route');
             socket.onopen = function (event) {
                 socket.onmessage = function (event) {
                     const parentElement = document.getElementById('monitor');

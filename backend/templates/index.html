@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script>
         console.log(window.location.host.slice(1))
-        const socket = new WebSocket('ws://' + window.location.host + ':5001/test_route');
+        const socket = new WebSocket('ws://' + window.location.host + '/test_route');
         socket.onopen = function (event) {
             console.log('WebSocket is connected.');
             $(document).on("click", "#send_action", function () {
