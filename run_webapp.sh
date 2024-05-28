@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python backend/main.py
+python backend/app.py

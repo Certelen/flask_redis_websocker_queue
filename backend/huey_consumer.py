@@ -49,6 +49,7 @@ def consumer_main():
 
     # Set up logging for the "huey" namespace.
     logger = logging.getLogger('huey')
+    logging.basicConfig(filename='myapp.log', level=logging.INFO)
     config.setup_logger(logger)
 
     consumer = huey_instance.create_consumer(**config.values)

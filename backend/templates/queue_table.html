@@ -1,0 +1,29 @@
+<caption>
+    Очередь задач
+</caption>
+<thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Status</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <th scope="row">{{ now.0 }}</th>
+        <td>{{ now.1 }}</td>
+        <td>Выполняется</td>
+    </tr>
+    <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+    </tr>
+    {% for task in queue %}
+    <tr>
+        <th scope="row">{{ task.id }}</th>
+        <td>{{ task.name }}</td>
+        <td>В очереди</td>
+    </tr>
+    {% endfor %}
+</tbody>
