@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_sock import Sock
 from huey import PriorityRedisHuey
-from huey.signals import SIGNAL_EXECUTING
+from huey.signals import SIGNAL_EXECUTING, SIGNAL_COMPLETE
 import time
 import redis
 
@@ -13,10 +13,12 @@ huey = PriorityRedisHuey()
 import tasks
 
 
-@huey.signal(SIGNAL_EXECUTING)
-def on_task_executing(signal, task):
-    r.mset({'now_task': task.id + '|' + task.name})
-    print(r.get('now_task'))
+@huey.signal(SIGNAL_EXECUTING, SIGNAL_COMPLETE)
+def on_task_status(signal, task):
+    if signal == 'executing':
+        r.mset({'now_task': task.id + '|' + task.name})
+    elif signal == 'complete':
+        r.mset({'now_task': ''})
 
 
 def deserialize_task(data):
@@ -54,12 +56,16 @@ def test_connect(ws):
 @sock.route('/update_route')
 def update_route(ws):
     queue = [deserialize_task(task) for task in huey.storage.enqueued_items()]
+    now = r.get('now_task').decode('utf-8')
     while True:
         new_queue = [deserialize_task(task)
                      for task in huey.storage.enqueued_items()]
-        if queue != new_queue:
+        new_now = r.get('now_task').decode('utf-8')
+        if queue != new_queue or now != new_now:
             queue = new_queue
-            now = r.get('now_task').decode('utf-8').split('|')
+            now = new_now
+            if now:
+                now = now.split('|')
             ws.send(render_template('queue_table.html', queue=queue, now=now))
         time.sleep(1)
 
