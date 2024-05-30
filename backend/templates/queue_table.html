@@ -10,9 +10,15 @@
 </thead>
 <tbody>
     <tr>
+        {% if now %}
         <th scope="row">{{ now.0 }}</th>
         <td>{{ now.1 }}</td>
         <td>Выполняется</td>
+        {% else %}
+        <th scope="row">---</th>
+        <td>---</td>
+        <td>Ожидание задач</td>
+        {% endif %}
     </tr>
     <tr>
         <th scope="row"></th>
