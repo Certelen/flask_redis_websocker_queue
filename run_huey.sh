@@ -5,4 +5,4 @@
 export PYTHONPATH="../../:$PYTHONPATH"
 
 # Run the consumer with 2 worker threads.
-python ./backend/huey_consumer.py app.huey
+python ./backend/tasks/huey_consumer.py main.huey

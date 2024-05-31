@@ -1,13 +1,14 @@
-# documentation file
-
 import logging
 import os
 import sys
 
 from huey.constants import WORKER_PROCESS
-from huey.consumer import Consumer
+from huey.consumer import Consumer  # noqa
 from huey.consumer_options import ConsumerConfig, OptionParserHandler
 from huey.utils import load_class
+
+
+"""Файл взятый из документации Huey для настройки"""
 
 
 def err(s):
@@ -17,7 +18,7 @@ def err(s):
 def load_huey(path):
     try:
         return load_class(path)
-    except:
+    except:  # noqa
         cur_dir = os.getcwd()
         if cur_dir not in sys.path:
             sys.path.insert(0, cur_dir)
